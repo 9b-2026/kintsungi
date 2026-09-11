@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MarkItDown Studio</title>
+    <meta name="description" content="Convert documents, spreadsheets, presentations, PDFs, and more into Markdown.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="MarkItDown Studio home">
+          <span class="brand-mark">M↓</span>
+          <span>MarkItDown <em>Studio</em></span>
+        </a>
+        <span class="local-badge"><i></i> Runs locally</span>
+      </header>
+
+      <nav class="mode-tabs" aria-label="Kintsungi tools">
+        <button class="mode-tab active" type="button" data-mode="markdown">MarkItDown</button>
+        <button class="mode-tab" type="button" data-mode="pdf">PDF tools</button>
+      </nav>
+
+      <section id="markdown-mode">
+      <div class="intro">
+        <p class="eyebrow">DOCUMENT ALCHEMY / 01</p>
+        <h1>Turn your files<br><span>into Markdown.</span></h1>
+        <p class="lede">Drop in a document, get clean structured text back. Your files stay on this machine.</p>
+      </section>
+
+      <section class="workspace" aria-label="File converter">
+        <form id="upload-form" class="dropzone" novalidate>
+          <input id="file-input" name="file" type="file" hidden>
+          <div class="dropzone-inner">
+            <div class="upload-symbol">↑</div>
+            <p class="drop-title">Drop a file here</p>
+            <p class="drop-subtitle">or <button type="button" id="browse-button">browse your computer</button></p>
+            <p class="file-hint">PDF · DOCX · PPTX · XLSX · HTML · CSV · JSON · EPUB · ZIP · and more</p>
+          </div>
+          <div id="selected-file" class="selected-file" hidden>
+            <span class="file-icon">□</span>
+            <span id="selected-name"></span>
+            <button id="remove-file" type="button" aria-label="Remove selected file">×</button>
+          </div>
+        </form>
+        <button id="convert-button" class="convert-button" type="submit" form="upload-form" disabled>
+          <span>Convert to Markdown</span><span class="button-arrow">↗</span>
+        </button>
+        <p id="status" class="status" role="status" aria-live="polite"></p>
+      </section>
+      </section>
+
+      <section id="pdf-mode" class="pdf-mode" hidden>
+        <div class="intro compact-intro">
+          <p class="eyebrow">PDF WORKBENCH / 02</p>
+          <h1>Shape your<br><span>PDFs locally.</span></h1>
+          <p class="lede">Merge, split, extract, reorder, rotate, or remove pages without uploading a document.</p>
+        </div>
+        <section class="pdf-panel" aria-label="PDF tools">
+          <label class="pdf-file-picker">Choose PDF files
+            <input id="pdf-input" type="file" accept="application/pdf" multiple>
+          </label>
+          <p id="pdf-selected" class="file-hint">No PDF selected.</p>
+          <div class="pdf-controls">
+            <label>Operation <select id="pdf-operation">
+              <option value="merge">Merge files</option><option value="split">Split pages</option>
+              <option value="extract">Extract pages</option><option value="remove">Remove pages</option>
+              <option value="organize">Organize pages</option><option value="rotate">Rotate pages</option>
+              <option value="info">Inspect PDF</option>
+            </select></label>
+            <label id="pdf-pages-field">Pages / order <input id="pdf-pages" placeholder="Example: 1-3, 5"></label>
+            <label id="pdf-angle-field" hidden>Angle <select id="pdf-angle"><option value="90">90°</option><option value="180">180°</option><option value="270">270°</option></select></label>
+          </div>
+          <button id="pdf-run" class="convert-button" type="button">Run PDF operation <span class="button-arrow">↗</span></button>
+          <p id="pdf-status" class="status" role="status" aria-live="polite"></p>
+          <pre id="pdf-info" class="markdown-output" hidden></pre>
+          <a id="pdf-download" class="pdf-download" hidden>Download result</a>
+        </section>
+      </section>
+
+      <section id="result-section" class="result-section" hidden>
+        <div class="result-heading">
+          <div>
+            <p class="eyebrow">OUTPUT / READY</p>
+            <h2 id="result-title">Converted Markdown</h2>
+          </div>
+          <div class="result-actions">
+            <button id="copy-button" class="secondary-button" type="button">Copy</button>
+            <button id="download-button" class="download-button" type="button">Download .md <span>↓</span></button>
+          </div>
+        </div>
+        <pre id="markdown-output" class="markdown-output"></pre>
+      </section>
+
+      <footer>
+        <span>POWERED BY <strong>KINTSUNGI</strong></span>
+        <span>MARKITDOWN + PDF TOOLS · LOCAL PROCESSING</span>
+      </footer>
+    </main>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>

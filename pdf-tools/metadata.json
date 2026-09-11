@@ -1,0 +1,6 @@
+{
+  "name": "PDF Tools - Merge and Split",
+  "description": "Offline PDF workspace imitating iLovePDF with merge, split, extract, rotate, and organize features processed locally via Python.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

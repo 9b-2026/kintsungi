@@ -1,0 +1,80 @@
+:root {
+  --ink: #202321;
+  --muted: #71766f;
+  --paper: #f4f2ec;
+  --white: #fbfaf6;
+  --acid: #d6ff4b;
+  --line: #d9d9d0;
+  --coral: #ef765e;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: "Manrope", sans-serif;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .38;
+  background-image: radial-gradient(#aaa99f .7px, transparent .7px);
+  background-size: 17px 17px;
+}
+.shell { width: min(1120px, calc(100% - 48px)); margin: auto; position: relative; }
+.topbar { display: flex; justify-content: space-between; align-items: center; padding: 28px 0; border-bottom: 1px solid var(--line); }
+.mode-tabs { display: flex; gap: 22px; padding: 16px 0 0; border-bottom: 1px solid var(--line); }
+.mode-tab { padding: 0 0 12px; border: 0; border-bottom: 2px solid transparent; color: var(--muted); background: transparent; font: 700 12px "DM Mono", monospace; cursor: pointer; }
+.mode-tab.active { border-color: var(--coral); color: var(--ink); }
+.brand { display: inline-flex; gap: 11px; align-items: center; color: var(--ink); text-decoration: none; font-size: 15px; font-weight: 800; letter-spacing: -.03em; }
+.brand em { color: var(--muted); font-style: normal; font-weight: 500; }
+.brand-mark { display: grid; place-items: center; width: 31px; height: 31px; color: var(--paper); background: var(--ink); font: 500 13px "DM Mono", monospace; }
+.local-badge { color: var(--muted); font: 11px "DM Mono", monospace; text-transform: uppercase; letter-spacing: .07em; }
+.local-badge i { display: inline-block; width: 7px; height: 7px; margin-right: 7px; border-radius: 50%; background: #55a96b; }
+.intro { padding: 88px 0 54px; max-width: 760px; }
+.compact-intro { padding-bottom: 38px; }
+.eyebrow { margin: 0 0 16px; color: var(--coral); font: 500 11px "DM Mono", monospace; letter-spacing: .12em; }
+h1, h2, p { margin-top: 0; }
+h1 { margin-bottom: 23px; font-size: clamp(52px, 8vw, 94px); line-height: .92; letter-spacing: -.075em; font-weight: 800; }
+h1 span { color: var(--coral); }
+.lede { max-width: 430px; color: var(--muted); font-size: 17px; line-height: 1.6; }
+.workspace { display: grid; grid-template-columns: 1fr 245px; gap: 16px; align-items: stretch; }
+.dropzone { min-height: 285px; position: relative; display: grid; place-items: center; border: 1px dashed #aeb2a6; background: rgba(251, 250, 246, .7); transition: border-color .2s, background .2s; }
+.dropzone.dragover { border-color: var(--ink); background: var(--acid); }
+.dropzone-inner { text-align: center; }
+.upload-symbol { display: grid; place-items: center; width: 50px; height: 50px; margin: 0 auto 20px; border: 1px solid var(--ink); border-radius: 50%; font-size: 25px; }
+.drop-title { margin-bottom: 4px; font-weight: 800; }
+.drop-subtitle { color: var(--muted); font-size: 13px; }
+.drop-subtitle button { padding: 0; border: 0; border-bottom: 1px solid var(--ink); color: var(--ink); background: transparent; font: inherit; cursor: pointer; }
+.file-hint { margin: 32px 0 0; color: var(--muted); font: 10px "DM Mono", monospace; letter-spacing: .04em; }
+.selected-file { position: absolute; inset: auto 18px 18px; display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: var(--white); border: 1px solid var(--line); font: 12px "DM Mono", monospace; }
+.file-icon { color: var(--coral); font-size: 18px; }
+.selected-file span:nth-child(2) { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.selected-file button { margin-left: auto; border: 0; background: transparent; font-size: 22px; cursor: pointer; }
+.convert-button, .download-button { display: flex; justify-content: space-between; align-items: center; border: 0; padding: 0 22px; background: var(--ink); color: var(--white); font: 700 14px "Manrope", sans-serif; cursor: pointer; }
+.convert-button:disabled { opacity: .35; cursor: not-allowed; }
+.button-arrow { font-size: 24px; font-weight: 400; }
+.status { grid-column: 1 / -1; min-height: 20px; margin: 0; color: var(--coral); font-size: 12px; }
+.result-section { margin: 72px 0 20px; }
+.result-heading { display: flex; justify-content: space-between; gap: 20px; align-items: end; margin-bottom: 18px; }
+h2 { margin: 0; font-size: 30px; letter-spacing: -.05em; }
+.result-actions { display: flex; gap: 8px; }
+.secondary-button, .download-button { min-height: 42px; padding: 0 15px; font-size: 12px; }
+.secondary-button { border: 1px solid var(--line); background: transparent; color: var(--ink); cursor: pointer; }
+.download-button { gap: 18px; background: var(--coral); }
+.download-button span { font-size: 18px; }
+.markdown-output { max-height: 540px; overflow: auto; margin: 0; padding: 25px; background: var(--white); border: 1px solid var(--line); color: #4d524d; white-space: pre-wrap; font: 13px/1.7 "DM Mono", monospace; }
+.pdf-panel { padding: 28px; background: var(--white); border: 1px solid var(--line); }
+.pdf-file-picker { display: inline-block; padding: 13px 16px; background: var(--ink); color: var(--white); font-size: 13px; font-weight: 700; cursor: pointer; }
+.pdf-file-picker input { display: none; }
+.pdf-controls { display: grid; grid-template-columns: 1fr 1fr 150px; gap: 12px; margin: 25px 0 16px; }
+.pdf-controls label { display: grid; gap: 8px; color: var(--muted); font: 10px "DM Mono", monospace; text-transform: uppercase; letter-spacing: .06em; }
+.pdf-controls input, .pdf-controls select { min-height: 42px; padding: 0 11px; border: 1px solid var(--line); color: var(--ink); background: var(--paper); font: 13px "Manrope", sans-serif; }
+.pdf-panel .convert-button { min-height: 54px; width: 100%; }
+.pdf-download { display: inline-block; margin-top: 12px; color: var(--ink); font: 700 12px "DM Mono", monospace; text-decoration: underline; }
+footer { display: flex; justify-content: space-between; padding: 55px 0 28px; color: var(--muted); font: 10px "DM Mono", monospace; letter-spacing: .07em; }
+footer strong { color: var(--ink); }
+@media (max-width: 700px) { .shell { width: min(100% - 28px, 560px); } .topbar { padding: 20px 0; } .intro { padding: 62px 0 40px; } h1 { font-size: 58px; } .workspace { grid-template-columns: 1fr; } .convert-button { min-height: 60px; } .result-heading { display: block; } .result-actions { margin-top: 18px; } .pdf-controls { grid-template-columns: 1fr; } footer { display: block; line-height: 2; } footer span { display: block; } }
